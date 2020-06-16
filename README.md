@@ -149,5 +149,5 @@ The pool will return errors when attempting to check out a client after you've c
 ## Test
 
 ```bash
-$ deno --allow-net --allow-read test
+$ deno test --allow-net --allow-read
 ```  
