@@ -11,7 +11,7 @@ PostgreSQL client for Deno
 
 ### Client 
 ```ts
-import { Client, Pool } from "./mod.ts";
+import { Client, Pool } from "https://deno.land/x/pg@v0.5.0/mod.ts";
 
 const client = new Client({
   user: 'postgres',
@@ -30,7 +30,7 @@ await client.end();
 
 ### ssl 
 ```js
-import { Client, Pool } from "./mod.ts";
+import { Client, Pool } from "https://deno.land/x/pg@v0.5.0/mod.ts";
 
 const client = new Client({
   user: 'postgres',
@@ -53,7 +53,7 @@ The client pool allows you to have a reusable pool of clients you can check out,
 
 #### Checkout, use, and return
 ```js
-import {  Pool } from "./mod.ts";
+import {  Pool } from "https://deno.land/x/pg@v0.5.0/mod.ts";
 
 const pool = new Pool({
   user: "postgres",
@@ -78,7 +78,7 @@ You must always return the client to the pool if you successfully check it out, 
 #### Single query
 If you don't need a transaction or you just need to run a single query, the pool has a convenience method to run a query on any available client in the pool. This is the preferred way to query with node-postgres if you can as it removes the risk of leaking a client.
 ```js
-import {  Pool } from "./mod.ts";
+import {  Pool } from "https://deno.land/x/pg@v0.5.0/mod.ts";
 
 const pool = new Pool({
   user: "postgres",
@@ -98,7 +98,7 @@ To execute a transaction with node-postgres you simply execute BEGIN / COMMIT / 
 You must use the same client instance for all statements within a transaction. PostgreSQL isolates a transaction to individual clients. This means if you initialize or use transactions with the pool.query method you will have problems. Do not use transactions with the pool.query method.
 
 ```js
-import {  Pool } from "./mod.ts";
+import {  Pool } from "https://deno.land/x/pg@v0.5.0/mod.ts";
 
 const pool = new Pool({
   user: "postgres",
@@ -128,7 +128,7 @@ try {
 ### Shutdown
 To shut down a pool call pool.end() on the pool. This will wait for all checked-out clients to be returned and then shut down all the clients and the pool timers.
 ```js
-import { Pool } from "./mod.ts";
+import { Pool } from "https://deno.land/x/pg@v0.5.0/mod.ts";
 
 const pool = new Pool({
   user: "postgres",
