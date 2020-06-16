@@ -1,4 +1,4 @@
-import { readUInt16BE, readInt32BE } from "./util.ts";
+import { readInt16BE, readInt32BE } from "./util.ts";
 
 const TEXT_MODE = 0;
 const BINARY_MODE = 1;
@@ -228,7 +228,7 @@ export default class Message {
   }
 
   readInt16(): number {
-    const value = readUInt16BE(this.chunk, this.offset);
+    const value = readInt16BE(this.chunk, this.offset);
     this.offset += 2;
     return value;
   }

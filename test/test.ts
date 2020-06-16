@@ -8,7 +8,6 @@ try {
   await client.connect();
   const result = await client.query("select * from test");
   console.log(result);
-  console.log(result.rows);
 } catch (error) {
   console.log(error);
 } finally {

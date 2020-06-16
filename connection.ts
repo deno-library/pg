@@ -73,7 +73,6 @@ export default class Connection {
         length: reader.length,
         header: reader.header,
       });
-      console.log(message);
       if (message.name === "error") {
         throw new Error(message.message);
       }

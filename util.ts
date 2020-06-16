@@ -53,6 +53,12 @@ export function readUInt16BE(buffer: Uint8Array, offset: number = 0): number {
   return buffer[offset] | (buffer[offset + 1] << 8);
 }
 
+export function readInt16BE(buffer: Uint8Array, offset: number): number {
+  offset = offset >>> 0;
+  const val = buffer[offset + 1] | (buffer[offset] << 8);
+  return val & 0x8000 ? val | 0xffff0000 : val;
+}
+
 export function readInt32BE(buffer: Uint8Array, offset: number = 0): number {
   offset = offset >>> 0;
 

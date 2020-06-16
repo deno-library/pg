@@ -2,10 +2,9 @@
 PostgreSQL client for Deno
 
 ### Status
-* [ ] client
+* [x] client
 * [ ] pool
 * [ ] ssl
-* [ ] end
 * [ ] transactions
 
 ## Useage  
