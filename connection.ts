@@ -128,6 +128,7 @@ export default class Connection {
   }
 
   async query(sql: string): Promise<Query> {
+    this.activeQuery = new Query();
     const encodedSql = this.encoder.encode(sql);
     const sqlLen = encodedSql.byteLength;
     const size = 1 + 4 + sqlLen + 1; // Byte1('Q') + Int32 + String + 1(null terminator)

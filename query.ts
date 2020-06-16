@@ -23,7 +23,6 @@ export default class Query {
       const parser = parsers.get(dataTypeID);
       const val = msg.fields[i];
       row[name] = parser ? parser(val) : val;
-      row[name] = val;
     }
 
     this.rows.push(row);

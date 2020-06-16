@@ -5,7 +5,7 @@ PostgreSQL client for Deno
 * [x] client
 * [x] pool
 * [ ] ssl
-* [ ] transactions
+* [x] transactions
 
 ## Useage  
 
