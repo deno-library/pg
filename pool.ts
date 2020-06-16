@@ -2,11 +2,11 @@ import { Client, ClientConfig } from "./client.ts";
 import Query from "./query.ts";
 
 interface PoolConfig extends ClientConfig {
-  max: number;
-  waitForConnections: boolean;
-  queueLimit: number;
-  idleTimeoutMillis: number;
-  waitForConnectionsMillis: number;
+  max?: number;
+  waitForConnections?: boolean;
+  queueLimit?: number;
+  idleTimeoutMillis?: number;
+  waitForConnectionsMillis?: number;
 }
 
 interface ClientOfPool extends Client {
@@ -113,7 +113,10 @@ export class Pool {
   async end(): Promise<void> {
     if (this.ended) return;
     this.ended = true;
-    await Promise.all(this.clients.map((client) => client.end()));
+    await Promise.all(this.clients.map((client) => {
+      clearTimeout(client.timeoutId);
+      client.end();
+    }));
     this.idle.length = 0;
     this.clients.length = 0;
     this.queue.length = 0;

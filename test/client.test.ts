@@ -1,4 +1,4 @@
-import { Client, Pool } from "../mod.ts";
+import { Client } from "../mod.ts";
 
 const client = new Client({
   password: "esri@123",

@@ -141,7 +141,7 @@ export default class Connection {
   async end(): Promise<void> {
     const writer = new Writer(5);
     writer.writeHeader("X").writeInt32(4);
-    await Deno.writeAll(this.conn, writer.buffer);
+    await this.conn.write(writer.buffer);
     this.conn.close();
   }
 

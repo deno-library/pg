@@ -3,7 +3,7 @@ PostgreSQL client for Deno
 
 ### Status
 * [x] client
-* [ ] pool
+* [x] pool
 * [ ] ssl
 * [ ] transactions
 
