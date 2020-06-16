@@ -14,7 +14,7 @@ export class Client {
   private conn: Connection;
   private connecting = false;
   private connected = false;
-  private queryable = false;
+  private queryable = true;
   private ended = false;
 
   constructor(config: ClientConfig) {
