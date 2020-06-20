@@ -146,6 +146,40 @@ await pool.query("SELECT * from users");
 ```
 The pool will return errors when attempting to check out a client after you've called `pool.end()` on the pool.
 
+## Interface  
+```ts
+export interface ClientConfig {
+  user?: string;
+  password: string;
+  database?: string;
+  hostname?: string;
+  certFile?: string;
+  port?: number;
+}
+
+interface PoolConfig extends ClientConfig {
+  // maximum number of clients the pool should contain
+  // by default this is set to 10.
+  max?: number;
+  // Determines the pool's action when no connections are available and the limit has 
+  // been reached. If true, the pool will queue the connection request and call it 
+  // when one becomes available. If false, the pool will immediately call back with 
+  // an error. (Default: true)
+  waitForConnections?: boolean;
+  // number of milliseconds to wait before timing out when waiting for connection.
+  // by default this is 0 which means no timeout
+  waitForConnectionsMillis?: number;
+  // The maximum number of connection requests the pool will queue before returning 
+  // an error from getConnection. If set to 0, there is no limit to the number of 
+  // queued connection requests. (Default: 0)
+  queueLimit?: number;
+  // number of milliseconds a client must sit idle in the pool and not be checked out
+  // before it is disconnected from the backend and discarded
+  // default is 10000 (10 seconds) - set to 0 to disable auto-disconnection of idle clients
+  idleTimeoutMillis?: number;
+}
+```
+
 ## Test
 
 ```bash
