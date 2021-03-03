@@ -44,8 +44,35 @@ export default class Message {
         return this.parseD();
       case "C":
         return this.parseC();
+      case "N":
+        return this.parseN();
       default:
         throw new Error(`Unprocessed header: ${this.header}`);
+    }
+  }
+
+  /**
+   * 
+   */
+  parseN() {
+    this.name = "NoticeResponse";
+    while (true) {
+      const byte = this.readBytes(1);
+      if (byte[0] === 0) break;
+      const type = this.decoder.decode(byte);
+      const msg = this.readZeroString();
+      switch (type) {
+        // can be: S,V,C,M,D,H,P,p,q,W,s,t,c,d,n,F,L,R
+        // from https://www.postgresql.org/docs/current/protocol-error-fields.html
+        case "M":
+          this.text = msg;
+          break;
+          // case "R":
+          //   // Routine: the name of the source-code routine reporting the error.
+          //   break;
+          // default:
+          //   console.log(byte, type, msg);
+      }
     }
   }
 

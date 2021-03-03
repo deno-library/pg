@@ -111,6 +111,9 @@ export default class Connection {
       case "CommandComplete":
         await this.activeQuery.handleCommandComplete(message);
         return;
+      case "NoticeResponse":
+        await this.activeQuery.handleCommandComplete(message);
+        return;
       default:
         console.debug(message);
         throw new Error("Unknown response");
