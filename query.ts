@@ -22,10 +22,14 @@ export default class Query {
       const parsers = format === "text" ? text : binary;
       const parser = parsers.get(dataTypeID);
       const val = msg.fields[i];
-      row[name] = parser ? parser(val) : val;
+      row[name] = parser && !this.isNullOrUndefined(val) ? parser(val) : val;
     }
 
     this.rows.push(row);
+  }
+
+  private isNullOrUndefined(val: unknown) {
+    return val === null || val === undefined
   }
 
   handleCommandComplete(msg: Message) {
